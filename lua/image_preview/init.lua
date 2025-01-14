@@ -13,7 +13,7 @@ local function GetTerm()
         return 'kitty'
     elseif os.getenv('WEZTERM_PANE') ~= nil then
         return 'wezterm'
-    elseif os.getenv('GHOSTTY') ~= nil then
+    elseif os.getenv('GHOSTTY_BIN_DIR') ~= nil then
         return 'ghostty'
     else
         return nil
