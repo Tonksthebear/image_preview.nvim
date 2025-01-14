@@ -13,6 +13,8 @@ local function GetTerm()
         return 'kitty'
     elseif os.getenv('WEZTERM_PANE') ~= nil then
         return 'wezterm'
+    elseif os.getenv('GHOSTTY') ~= nil then
+        return 'ghostty'
     else
         return nil
     end
@@ -53,6 +55,12 @@ function M.PreviewImage(absolutePath)
                 print('Kitty not supported on windows')
             else
                 command = 'silent !kitten @ launch --type=window kitten icat --hold "' .. absolutePath .. '"'
+            end
+         elseif term == 'ghostty' then
+            if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
+                print('Ghostty not supported on windows')
+            else
+                command = 'silent !viu "' .. absolutePath .. '"'
             end
         else
             print('No support for this terminal.')
